@@ -17,13 +17,13 @@ function IndexPage({ match }) {
         console.log("Refreshing!")
         router.replace(router.asPath);
     }
-    setTimeout(refreshData, 60 * 1000)
+    setTimeout(refreshData, 60 * 1000);
 
-    const dateString = moment(match.startsAt).format('MMMM Do h:mm a');
+    const dateString = match.startsAt ? moment(match.startsAt).format('MMMM Do h:mm a') : null;
     return (
         <>
             <Head>
-                <title>TCMU - Live Scoreboard</title>
+                <title>TCMU - Live Scoreboard{match.title ? ` ｜ ${match.title}` : undefined}</title>
                 <link rel="icon" href="favicon.png" type="image/x-icon" />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="TCMU - Live Scoreboard" />
@@ -31,12 +31,11 @@ function IndexPage({ match }) {
             </Head>
 
             <main className={classes.main}>
-                <div className={classes.logo}>
-                    <Image src='/images/TCMU-Logo-Dark.png' alt="TCMU Logo" width='161' height='47' />
-                </div>
+                <h1 className={classes.title}>{match.title}</h1>
 
                 {(match) ?
                     <CardHolder>
+
                         <SchoolCard school={match.schools[0]} />
 
                         <div className={classes.matchDetails}>
@@ -46,11 +45,17 @@ function IndexPage({ match }) {
                             {(match.halftimeAt) ? <label>2st Half</label> : null}
                         </div>
 
+
                         <SchoolCard school={match.schools[1]} />
                     </CardHolder>
                     :
                     <label className={classes.noData}>No data available!</label>
                 }
+
+                <div className={classes.logoRail}>
+                    <Image src='/images/TCMU-Logo-Dark.png' alt="TCMU Logo" width='80' height='23' />
+                    <Image src='/images/College-Logo.png' alt="College Logo" width='72' height='41' />
+                </div>
             </main>
         </>
     );
