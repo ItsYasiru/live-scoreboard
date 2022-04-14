@@ -14,7 +14,6 @@ import classes from '../styles/index.module.sass';
 function IndexPage({ match }) {
     const router = useRouter();
     const refreshData = () => {
-        console.log("Refreshing!")
         router.replace(router.asPath);
     }
     setTimeout(refreshData, 60 * 1000);
@@ -31,7 +30,10 @@ function IndexPage({ match }) {
             </Head>
 
             <main className={classes.main}>
-                <h1 className={classes.title}>{match.title}</h1>
+                <div className={classes.title}>
+                    <h1>{match.title ? match.title : 'Live Scoreboard'}</h1>
+                    {match.title ? <label>TCMU - Live Scoreboard</label> : null}
+                </div>
 
                 {(match) ?
                     <CardHolder>

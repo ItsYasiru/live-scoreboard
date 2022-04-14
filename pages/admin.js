@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import CreateSection from '../components/admin/CreateSection';
-import ControlSection from '../components/admin/ControlSection';
+import CreatePanel from '../components/admin/CreatePanel';
+import ControlPanel from '../components/admin/ControlPanel';
 
 import classes from '../styles/admin.module.sass';
 
@@ -17,8 +17,8 @@ function AdminPage({ match }) {
             </Head>
 
             <main className={classes.main}>
-                <CreateSection className={classes.none} />
-                <ControlSection />
+                <CreatePanel className={classes.none} />
+                <ControlPanel match={match} />
             </main>
         </>
     );

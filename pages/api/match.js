@@ -9,7 +9,7 @@ async function getScores() {
 async function createMatch(data) {
     let { db } = await connectToDatabase();
 
-    return await db.collection('matches').insertOne(data);
+    await db.collection('matches').insertOne(data);
 };
 
 function internalServerError(response) {
@@ -24,7 +24,7 @@ function unauthorized(response) {
 
 async function handler(request, response) {
     switch (request.method) {
-        case "GET":
+        case "GET": {
             try {
                 const json = {
                     data: await getScores(),
@@ -38,7 +38,8 @@ async function handler(request, response) {
                 console.log(error.message);
                 return internalServerError(response);
             };
-        case "PUT":
+        };
+        case "PUT": {
             try {
                 const body = request.body;
 
@@ -58,6 +59,7 @@ async function handler(request, response) {
                 console.log(error.message);
                 return internalServerError(response);
             };
+        };
     };
 };
 

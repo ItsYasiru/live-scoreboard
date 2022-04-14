@@ -1,0 +1,84 @@
+.panel
+    height: calc(100vh - 50px)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    text-align: center
+    margin: 10px
+    padding: 40px
+    text-align: center
+    border-radius: 5px
+    background: #DCDCDC
+    box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px inset
+    h1
+        font-size: 30px
+        margin: 10px 0
+    span
+        margin: 10px 0
+        padding: 10px
+        display: flex
+        flex-direction: column
+        border-radius: 5px
+        background: #FFFAFA
+        box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px
+        &:first-child
+            margin-top: 0
+        &:last-child
+            margin-bottom: 0
+        ul
+            margin: 5px 0
+            padding: 10px
+            list-style: none
+            border-radius: 5px
+    label
+        font-weight: 600
+    input
+        margin: 5px 0
+        padding: 5px
+        border: 1px solid transparent
+        border-radius: 5px
+        font-family: inherit !important
+        background: #DCDCDC
+        text-align: center
+    button
+        width: 100%
+        padding: 5px
+        margin: 5px 0
+        font-weight: 700
+        border: none
+        border-radius: 5px
+        background: #FFFAFA
+        font-family: inherit
+        box-shadow: rgba(50, 50, 93, 0.3) 0 0 15px
+        &:only-child
+            margin: 0
+
+    .scoreView
+        display: flex
+        flex-direction: column
+        h3
+            padding: 5px
+            background: #FFFAFA
+            border-radius: 5px
+            box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px
+        table
+            margin: 10px 0
+            background: #FFFAFA
+            border-radius: 5px
+            box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px
+            tr
+                td
+                    padding: 5px 15px
+                    input
+                        width: 60px
+
+    .additionalControls
+        display: flex
+        flex-direction: row
+        button
+            margin: 0 5px
+            &:first-child
+                margin-left: 0
+            &:last-child
+                margin-right: 0
+

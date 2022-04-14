@@ -8,29 +8,35 @@
     text-transform: uppercase
     background: #DCDCDC
     border-radius: 5px
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset
+    box-shadow: rgba(50, 50, 93, 0.3) 0 0 30px inset
+    h1
+        font-size: 40px
+        text-transform: uppercase
 
 .data
-    padding: 10px 15px
+    padding: 20px
     text-align: center
-    width: 100%
     h1, h2
         margin: 5px
     table
-        width: 80%
         margin: 10px auto
         font-size: 15px
         font-weight: 800
-        border-collapse: collapse
+        border-spacing: 4px
         border: 1px dashed #808080
+        box-shadow: rgba(50, 50, 93, 0.3) 0 0 30px
         tr
             margin: 3px
+            background: #C0C0C0
+            transform: scale(1)
+            transition: 0.25s
             &:nth-child(odd)
                 background: #C0C0C0
             &:nth-child(even)
                 background: #D3D3D3
             td
                 padding: 10px 25px
+
 
 .crestHolder
     padding: 10px 15px

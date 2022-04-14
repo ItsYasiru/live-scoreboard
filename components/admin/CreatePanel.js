@@ -1,4 +1,4 @@
-import classes from './CreateSection.module.sass';
+import classes from './panel.module.sass';
 
 
 async function createMatch(event) {
@@ -14,11 +14,11 @@ async function createMatch(event) {
     const match = {
         schools: [
             {
-                name: document.getElementById("school1").value,
+                name: document.getElementById("school-1").value,
                 score: score
             },
             {
-                name: document.getElementById("school2").value,
+                name: document.getElementById("school-2").value,
                 score: score
             }
         ],
@@ -44,14 +44,14 @@ async function createMatch(event) {
         },
     };
 
-    await fetch("http://localhost:3000/api/match", options);
+    fetch("http://localhost:3000/api/match", options);
 };
 
-function CreateSection() {
+function CreatePanel() {
     return (
-        <section>
+        <section className={classes.panel}>
             <h1>Create</h1>
-            <form className={classes.form} onSubmit={createMatch}>
+            <form className={classes.form}>
                 <span>
                     <label>Starts At</label>
                     <input required id="startsAtDate" name="startsAtDate" type="date" />
@@ -59,11 +59,11 @@ function CreateSection() {
                 </span>
 
                 <span>
-                    <label htmlFor="school1">School 1</label>
-                    <input required id="school1" name="school1" type="text" />
+                    <label htmlFor="school-1">School 1</label>
+                    <input required id="school-1" name="school-1" type="text" />
 
-                    <label htmlFor="school2">School 2</label>
-                    <input required id="school2" name="school2" type="text" />
+                    <label htmlFor="school-2">School 2</label>
+                    <input required id="school-2" name="school-2" type="text" />
 
                     <ul>
                         <h3>Valid school names</h3>
@@ -80,10 +80,10 @@ function CreateSection() {
                     </ul>
                 </span>
 
-                <button onClick={createMatch}>Submit</button>
+                <button onClick={createMatch}>Create Match</button>
             </form>
         </section>
     );
 };
 
-export default CreateSection;
+export default CreatePanel;
