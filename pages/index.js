@@ -58,6 +58,7 @@ function IndexPage(props) {
                                 {!match.startedAt ? (
                                     <label>{dateString}</label>
                                 ) : null}
+
                                 {match.startedAt ? (
                                     <Timer
                                         startedAt={match.startedAt}
@@ -65,14 +66,17 @@ function IndexPage(props) {
                                         offset={100}
                                     />
                                 ) : null}
+
                                 {match.startedAt &&
                                 !match.halftimeAt &&
                                 !match.halftime ? (
                                     <label>1st Half</label>
                                 ) : null}
+
                                 {match.halftime ? (
                                     <label>Halftime</label>
                                 ) : null}
+
                                 {match.halftimeAt && !match.halftime ? (
                                     <label>2nd Half</label>
                                 ) : null}

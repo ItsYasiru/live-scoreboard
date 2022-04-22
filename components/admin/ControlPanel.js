@@ -52,7 +52,7 @@ function startMatch() {
 
 function endMatch() {
     const match = {
-        endedAt: new Date().getTime(),
+        finishedAt: new Date().getTime(),
     };
 
     requestHandler({ data: match, token: "X" });
@@ -226,7 +226,7 @@ function ControlPanel(props) {
                 {match.halftime ? (
                     <button onClick={endHalftime}>End Halftime</button>
                 ) : null}
-                {!match.endedAt && match.halftimeAt ? (
+                {!match.finishedAt && match.halftimeAt ? (
                     <button onClick={endMatch}>End Match</button>
                 ) : null}
             </div>
