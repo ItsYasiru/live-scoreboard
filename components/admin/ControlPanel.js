@@ -41,7 +41,7 @@ function updateMatch() {
         },
     };
 
-    fetch("http://localhost:3000/api/match", options);
+    fetch("https://live-scoreboard.vercel.app/api/match", options);
 };
 
 function startMatch() {
@@ -63,7 +63,7 @@ function startMatch() {
         },
     };
 
-    fetch("http://localhost:3000/api/match", options);
+    fetch("https://live-scoreboard.vercel.app/api/match", options);
 };
 
 function endMatch() {
@@ -85,7 +85,7 @@ function endMatch() {
         },
     };
 
-    fetch("http://localhost:3000/api/match", options);
+    fetch("https://live-scoreboard.vercel.app/api/match", options);
 };
 
 function halftime() {
@@ -107,7 +107,7 @@ function halftime() {
         },
     };
 
-    fetch("http://localhost:3000/api/match", options);
+    fetch("https://live-scoreboard.vercel.app/api/match", options);
 };
 
 

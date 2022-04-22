@@ -92,7 +92,7 @@ function IndexPage(props) {
 };
 
 export async function getServerSideProps() {
-    const { data, success } = await (await fetch("http://localhost:3000/api/match")).json();
+    const { data, success } = await (await fetch("https://live-scoreboard.vercel.app/api/match")).json();
 
     if (success) {
         return {

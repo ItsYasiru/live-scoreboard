@@ -43,7 +43,7 @@ async function createMatch(event) {
         },
     };
 
-    fetch("http://localhost:3000/api/match", options);
+    fetch("https://live-scoreboard.vercel.app/api/match", options);
 };
 
 function CreatePanel() {
