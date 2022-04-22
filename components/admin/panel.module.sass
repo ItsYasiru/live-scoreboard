@@ -1,19 +1,23 @@
 .panel
-    height: calc(100vh - 120px)
     display: flex
     flex-direction: column
     justify-content: center
     text-align: center
-    margin: 10px
-    padding: 40px
+    margin: 0 20px
+    padding: 20px
     text-align: center
     border-radius: 5px
     background: #DCDCDC
     box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px inset
+    &:first-child
+        margin-left: 0
+    &:last-child
+        margin-right: 0
+
     h1
         font-size: 30px
     h1, h3
-        margin: 10px 0
+        margin: 0
     span
         margin: 10px 0
         padding: 10px
@@ -22,19 +26,16 @@
         border-radius: 5px
         background: #FFFAFA
         box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px
-        &:first-child
-            margin-top: 0
-        &:last-child
-            margin-bottom: 0
         ul
             margin: 5px 0
             padding: 10px
             list-style: none
             border-radius: 5px
         h4
-            margin: 5px
-        h1, h3
-            margin: 10px
+            font-size: 13px
+        h3, h4
+            margin: 0
+
     label
         font-weight: 600
     input, select
@@ -55,8 +56,12 @@
         background: #FFFAFA
         font-family: inherit
         box-shadow: rgba(50, 50, 93, 0.3) 0 0 15px
+        transition: 0.2s
         &:only-child
             margin: 0
+        &:hover
+            color: white
+            background: grey
 
     .scoreView
         display: flex
@@ -73,9 +78,9 @@
             box-shadow: rgba(50, 50, 93, 0.3) 0 0 20px
             tr
                 td
-                    padding: 5px 15px
+                    padding: 0 10px
                     input
-                        width: 60px
+                        width: 65px
 
     .additionalControls
         display: flex
