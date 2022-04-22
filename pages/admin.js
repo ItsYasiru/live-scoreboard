@@ -18,7 +18,7 @@ function AdminPage({ match }) {
 
             <main className={classes.main}>
                 <CreatePanel className={classes.none} />
-                <ControlPanel match={match} />
+                {match ? <ControlPanel match={match} /> : null}
             </main>
         </>
     );

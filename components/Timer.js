@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-function generateTimerString(finishedAt, startedAt) {
+function generateTimerString(startedAt, finishedAt) {
     let duration;
     if (finishedAt) {
         duration = finishedAt - startedAt;
@@ -33,12 +33,13 @@ function generateTimerString(finishedAt, startedAt) {
     );
 };
 
-function Timer({ startedAt, finishedAt }) {
-    const [timer, setTimer] = useState(generateTimerString(finishedAt, startedAt));
+function Timer(props) {
+    const { startedAt, finishedAt } = props;
+    const [timer, setTimer] = useState(generateTimerString(startedAt, finishedAt));
 
     useEffect(() => {
         setTimeout(() => {
-            setTimer(generateTimerString(finishedAt, startedAt));
+            setTimer(generateTimerString(startedAt, finishedAt));
         }, 500);
     });
 
