@@ -25,6 +25,7 @@ async function internalServerError(response) {
 }
 
 async function unauthorized(response) {
+    console.log("Unauthorized!");
     response.status(401);
     return response.end();
 }
@@ -42,7 +43,9 @@ async function handler(request, response) {
             }
             case "PUT": {
                 const body = request.body;
-                if (!body.token == process.env.API_TOKEN) {
+                console.log(body.token);
+                console.log(process.env.API_TOKEN);
+                if (body.token != process.env.API_TOKEN) {
                     return unauthorized(response);
                 }
 
@@ -54,7 +57,7 @@ async function handler(request, response) {
             }
             case "PATCH": {
                 const body = request.body;
-                if (!body.token == process.env.API_TOKEN) {
+                if (body.token != process.env.API_TOKEN) {
                     return unauthorized(response);
                 }
 

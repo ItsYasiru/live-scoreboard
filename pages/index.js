@@ -10,6 +10,8 @@ import SchoolCard from "../components/index/SchoolCard";
 
 import classes from "../styles/index.module.sass";
 
+const URL = process.env.URL + "/api/match";
+
 function IndexPage(props) {
     const { match } = props;
 
@@ -19,55 +21,63 @@ function IndexPage(props) {
     };
     setTimeout(refreshData, 60 * 1000);
 
-    if (match) {
-        const dateString = match.startsAt
-            ? moment(match.startsAt).format("MMMM Do h:mm a")
-            : null;
-        return (
-            <>
-                <Head>
-                    <title>
-                        TCMU - Live Scoreboard
-                        {match.title ? ` ｜ ${match.title}` : undefined}
-                    </title>
-                    <link rel='icon' href='favicon.png' type='image/x-icon' />
-                    <meta property='og:type' content='website' />
-                    <meta
-                        property='og:title'
-                        content='TCMU - Live Scoreboard'
-                    />
-                    <meta
-                        property='og:description'
-                        content='Trinity college media unit live scoreboard.'
-                    />
-                </Head>
+    const dateString = match
+        ? moment(match.startsAt).format("MMMM Do h:mm a")
+        : null;
+    return (
+        <>
+            <Head>
+                <title>TCMU - Live Scoreboard</title>
+                <link rel='icon' href='favicon.png' type='image/x-icon' />
+                <meta property='og:type' content='website' />
+                <meta property='og:title' content='TCMU - Live Scoreboard' />
+                <meta
+                    property='og:description'
+                    content='Trinity college media unit live scoreboard.'
+                />
+            </Head>
 
-                <main className={classes.main}>
-                    <div className={classes.title}>
-                        <h1>{match.title ? match.title : "Live Scoreboard"}</h1>
-                        {match.title ? (
-                            <label>TCMU - Live Scoreboard</label>
-                        ) : null}
-                    </div>
+            <main className={classes.main}>
+                {match ? (
+                    <CardHolder
+                        title={
+                            <div className={classes.title}>
+                                <h1>
+                                    {match.title
+                                        ? match.title
+                                        : "Live Scoreboard"}
+                                </h1>
+                                {match.title ? (
+                                    <label>TCMU - Live Scoreboard</label>
+                                ) : null}
+                            </div>
+                        }
+                    >
+                        <SchoolCard school={match.schools[0]} />
 
-                    {match ? (
-                        <CardHolder>
-                            <SchoolCard school={match.schools[0]} />
-
+                        {!match.finishedAt ? (
                             <div className={classes.matchDetails}>
-                                {!match.startedAt ? (
+                                {!match.firstHalfAt ? (
                                     <label>{dateString}</label>
                                 ) : null}
 
-                                {match.startedAt ? (
+                                {match.firstHalfAt ? (
                                     <Timer
-                                        startedAt={match.startedAt}
-                                        finishedAt={match.finishedAt}
+                                        firstHalfAt={
+                                            match.secondHalfAt
+                                                ? match.secondHalfAt
+                                                : match.firstHalfAt
+                                        }
+                                        finishedAt={
+                                            match.halftimeAt && match.halftime
+                                                ? match.halftimeAt
+                                                : match.finishedAt
+                                        }
                                         offset={100}
                                     />
                                 ) : null}
 
-                                {match.startedAt &&
+                                {match.firstHalfAt &&
                                 !match.halftimeAt &&
                                 !match.halftime ? (
                                     <label>1st Half</label>
@@ -81,86 +91,37 @@ function IndexPage(props) {
                                     <label>2nd Half</label>
                                 ) : null}
                             </div>
+                        ) : null}
 
-                            <SchoolCard school={match.schools[1]} />
-                        </CardHolder>
-                    ) : (
-                        <label className={classes.noData}>
-                            No data available!
-                        </label>
-                    )}
+                        <SchoolCard school={match.schools[1]} />
+                    </CardHolder>
+                ) : (
+                    <label className={classes.noData}>
+                        Came back later, nothing is going on!
+                    </label>
+                )}
 
-                    <div className={classes.logoRail}>
-                        <Image
-                            src='/images/TCMU-Logo-Dark.png'
-                            alt='TCMU Logo'
-                            width='80'
-                            height='23'
-                        />
-                        <Image
-                            src='/images/College-Logo.png'
-                            alt='College Logo'
-                            width='72'
-                            height='40'
-                        />
-                    </div>
-                </main>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <Head>
-                    <title>TCMU - Live Scoreboard</title>
-                    <link rel='icon' href='favicon.png' type='image/x-icon' />
-                    <meta property='og:type' content='website' />
-                    <meta
-                        property='og:title'
-                        content='TCMU - Live Scoreboard'
+                <div className={classes.logoRail}>
+                    <Image
+                        src='/images/TCMU-Logo-Dark.png'
+                        alt='TCMU Logo'
+                        width='80'
+                        height='23'
                     />
-                    <meta
-                        property='og:description'
-                        content='Trinity college media unit live scoreboard.'
+                    <Image
+                        src='/images/College-Logo.png'
+                        alt='College Logo'
+                        width='72'
+                        height='40'
                     />
-                </Head>
-
-                <main className={classes.main}>
-                    <div className={classes.title}>
-                        <h2
-                            style={{
-                                margin: "20px",
-                                fontSize: "30px",
-                                fontWeight: "500",
-                            }}
-                        >
-                            Nothings going on come back later.
-                        </h2>
-                    </div>
-
-                    <div className={classes.logoRail}>
-                        <Image
-                            src='/images/TCMU-Logo-Dark.png'
-                            alt='TCMU Logo'
-                            width='80'
-                            height='23'
-                        />
-                        <Image
-                            src='/images/College-Logo.png'
-                            alt='College Logo'
-                            width='72'
-                            height='40'
-                        />
-                    </div>
-                </main>
-            </>
-        );
-    }
+                </div>
+            </main>
+        </>
+    );
 }
 
 export async function getServerSideProps() {
-    const { data, success } = await (
-        await fetch("https://live-scoreboard.vercel.app/api/match")
-    ).json();
+    const { data, success } = await (await fetch(URL)).json();
 
     if (success) {
         return {

@@ -34,7 +34,7 @@ async function createMatch(event) {
 
     const data = {
         data: match,
-        token: "X",
+        token: localStorage.getItem("token"),
     };
 
     const options = {

@@ -1,7 +1,14 @@
 import classes from "./CardHolder.module.sass";
 
-function Component({ children }) {
-    return <div className={classes.main}>{children}</div>;
+function Component(props) {
+    const { title, children } = props;
+
+    return (
+        <fieldset className={classes.main}>
+            <legend>{title}</legend>
+            {children}
+        </fieldset>
+    );
 }
 
 export default Component;

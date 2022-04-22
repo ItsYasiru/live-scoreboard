@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-function generateTimerString(startedAt, finishedAt, offset) {
+function generateTimerString(firstHalfAt, finishedAt, offset) {
     let duration;
     if (finishedAt) {
-        duration = finishedAt - startedAt;
+        duration = finishedAt - firstHalfAt;
     } else {
         const now = new Date().getTime();
-        duration = now - startedAt;
+        duration = now - firstHalfAt;
     }
 
     if (offset) {
@@ -43,14 +43,14 @@ function generateTimerString(startedAt, finishedAt, offset) {
 }
 
 function Timer(props) {
-    const { startedAt, finishedAt, offset } = props;
+    const { firstHalfAt, finishedAt, offset } = props;
     const [timer, setTimer] = useState(
-        generateTimerString(startedAt, finishedAt, offset),
+        generateTimerString(firstHalfAt, finishedAt, offset),
     );
 
     useEffect(() => {
         setTimeout(() => {
-            setTimer(generateTimerString(startedAt, finishedAt, offset));
+            setTimer(generateTimerString(firstHalfAt, finishedAt, offset));
         }, 1000);
     });
 

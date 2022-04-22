@@ -1,8 +1,11 @@
 import Head from "next/head";
 import CreatePanel from "../components/admin/CreatePanel";
 import ControlPanel from "../components/admin/ControlPanel";
+import LoginPanel from "../components/admin/LoginPanel";
 
 import classes from "../styles/admin.module.sass";
+
+const URL = process.env.URL + "/api/match";
 
 function AdminPage({ match }) {
     return (
@@ -19,17 +22,16 @@ function AdminPage({ match }) {
             </Head>
 
             <main className={classes.main}>
-                <CreatePanel className={classes.none} />
-                {match ? <ControlPanel match={match} /> : null}
+                <LoginPanel />
+                <CreatePanel />
+                <ControlPanel match={match} />
             </main>
         </>
     );
 }
 
 export async function getServerSideProps() {
-    const { data, success } = await (
-        await fetch("https://live-scoreboard.vercel.app/api/match")
-    ).json();
+    const { data, success } = await (await fetch(URL)).json();
 
     if (success) {
         return {
