@@ -2,7 +2,7 @@ import classes from "./panel.module.sass";
 
 const getValue = (id) => document.getElementById(id).value;
 
-function requestHandler(data) {
+function requestHandler(data, reload = true) {
     data.token = localStorage.getItem("token");
 
     const options = {
@@ -15,6 +15,7 @@ function requestHandler(data) {
     };
 
     fetch("/api/match", options);
+    reload ? location.reload() : null;
 }
 
 function updateMatch() {
@@ -41,7 +42,7 @@ function updateMatch() {
         ],
     };
 
-    requestHandler({ data: match });
+    requestHandler({ data: match }, false);
 }
 
 function startMatch() {

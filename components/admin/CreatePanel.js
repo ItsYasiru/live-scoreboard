@@ -100,7 +100,9 @@ function CreatePanel() {
                     </select>
                 </span>
 
-                <button onClick={createMatch}>Create Match</button>
+                <button onClick={createMatch} type='button'>
+                    Create Match
+                </button>
             </form>
         </section>
     );
