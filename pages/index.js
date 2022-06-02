@@ -2,7 +2,6 @@ import moment from "moment";
 
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 import Timer from "../components/Timer";
 import CardHolder from "../components/index/CardHolder";
@@ -22,12 +21,6 @@ function timestampToString(timestamp, format = "MMMM Do h:mm a") {
 
 function IndexPage(props) {
     const { match } = props;
-
-    const router = useRouter();
-    const refreshData = () => {
-        router.reload();
-    };
-    setTimeout(refreshData, 60 * 1000);
 
     if (match) {
         match.modeSettings = getModeSettings(match.gamemode);

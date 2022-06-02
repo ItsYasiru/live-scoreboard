@@ -18,7 +18,7 @@ async function createMatch(event) {
     };
 
     const match = {
-        gamemode: getValue("gamemode"),
+        gamemode: getValue("gamemode").toLowerCase(),
         title: getValue("title"),
         schools: [
             {
