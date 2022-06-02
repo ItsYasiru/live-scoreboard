@@ -8,9 +8,17 @@ import Timer from "../components/Timer";
 import CardHolder from "../components/index/CardHolder";
 import SchoolCard from "../components/index/SchoolCard";
 
+import { getModeSettings } from "../lib/gameModeHandler";
+
 import classes from "../styles/index.module.sass";
 
 const URL = process.env.URL + "/api/match";
+
+// Utility
+
+function timestampToString(timestamp, format = "MMMM Do h:mm a") {
+    return moment(timestamp).format(format);
+}
 
 function IndexPage(props) {
     const { match } = props;
@@ -21,9 +29,10 @@ function IndexPage(props) {
     };
     setTimeout(refreshData, 60 * 1000);
 
-    const dateString = match
-        ? moment(match.startsAt).format("MMMM Do h:mm a")
-        : null;
+    if (match) {
+        match.modeSettings = getModeSettings(match.gamemode);
+    }
+
     return (
         <>
             <Head>
@@ -53,15 +62,18 @@ function IndexPage(props) {
                             </div>
                         }
                     >
-                        <SchoolCard school={match.schools[0]} />
+                        <SchoolCard school={match.schools[0]} match={match} />
 
                         {!match.finishedAt ? (
                             <div className={classes.matchDetails}>
                                 {!match.firstHalfAt ? (
-                                    <label>{dateString}</label>
+                                    <label>
+                                        {timestampToString(match.startsAt)}
+                                    </label>
                                 ) : null}
 
-                                {match.firstHalfAt ? (
+                                {match.firstHalfAt &&
+                                match.modeSettings.timer ? (
                                     <Timer
                                         firstHalfAt={
                                             match.secondHalfAt
@@ -77,23 +89,27 @@ function IndexPage(props) {
                                     />
                                 ) : null}
 
-                                {match.firstHalfAt &&
-                                !match.halftimeAt &&
-                                !match.halftime ? (
-                                    <label>1st Half</label>
-                                ) : null}
+                                {match.modeSettings.halfIndicator ? (
+                                    <>
+                                        {match.firstHalfAt &&
+                                        !match.halftimeAt &&
+                                        !match.halftime ? (
+                                            <label>1st Half</label>
+                                        ) : null}
 
-                                {match.halftime ? (
-                                    <label>Halftime</label>
-                                ) : null}
+                                        {match.halftime ? (
+                                            <label>Halftime</label>
+                                        ) : null}
 
-                                {match.halftimeAt && !match.halftime ? (
-                                    <label>2nd Half</label>
+                                        {match.halftimeAt && !match.halftime ? (
+                                            <label>2nd Half</label>
+                                        ) : null}
+                                    </>
                                 ) : null}
                             </div>
                         ) : null}
 
-                        <SchoolCard school={match.schools[1]} />
+                        <SchoolCard school={match.schools[1]} match={match} />
                     </CardHolder>
                 ) : (
                     <label className={classes.noData}>

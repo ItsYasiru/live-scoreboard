@@ -41,7 +41,6 @@ function updateMatch() {
             },
         ],
     };
-
     requestHandler({ data: match }, false);
 }
 
@@ -49,7 +48,6 @@ function startMatch() {
     const match = {
         firstHalfAt: new Date().getTime(),
     };
-
     requestHandler({ data: match });
 }
 
@@ -58,7 +56,6 @@ function halftime() {
         halftime: true,
         halftimeAt: new Date().getTime(),
     };
-
     requestHandler({ data: match });
 }
 
@@ -67,21 +64,18 @@ function endHalftime() {
         halftime: false,
         secondHalfAt: new Date().getTime(),
     };
-
     requestHandler({ data: match });
 }
 function endMatch() {
     const match = {
         finishedAt: new Date().getTime(),
     };
-
     requestHandler({ data: match });
 }
 function clearMatch() {
     const match = {
         live: false,
     };
-
     requestHandler({ data: match });
 }
 
@@ -151,7 +145,7 @@ function ControlPanel(props) {
                                                         i + 1
                                                     }-conversions`}
                                                 >
-                                                    Conversions
+                                                    Wickets
                                                 </label>
                                             </td>
                                             <td>
@@ -178,7 +172,7 @@ function ControlPanel(props) {
                                                         i + 1
                                                     }-penalties`}
                                                 >
-                                                    Penalties
+                                                    Runs
                                                 </label>
                                             </td>
                                             <td>
@@ -205,7 +199,7 @@ function ControlPanel(props) {
                                                         i + 1
                                                     }-dropgoals`}
                                                 >
-                                                    Drop Goals
+                                                    Overs
                                                 </label>
                                             </td>
                                             <td>

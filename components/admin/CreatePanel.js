@@ -1,4 +1,5 @@
 import classes from "./panel.module.sass";
+import { toTitleCase } from "../../utils/textFormatting";
 
 const getValue = (id) => document.getElementById(id).value;
 
@@ -17,6 +18,7 @@ async function createMatch(event) {
     };
 
     const match = {
+        gamemode: getValue("gamemode"),
         title: getValue("title"),
         schools: [
             {
@@ -47,6 +49,7 @@ async function createMatch(event) {
     };
 
     fetch("/api/match", options);
+    location.reload();
 }
 
 function CreatePanel() {
@@ -61,6 +64,9 @@ function CreatePanel() {
         "VID - Vidyartha College",
         "STC - St. Thomas College",
     ];
+
+    let gamemodes = ["rugby", "cricket"];
+
     return (
         <section className={classes.panel}>
             <h1>Create</h1>
@@ -68,6 +74,13 @@ function CreatePanel() {
                 <span>
                     <label>Title</label>
                     <input required id='title' name='title' />
+
+                    <label>Gamemode</label>
+                    <select required id='gamemode' name='gamemode'>
+                        {gamemodes.map((item, i) => (
+                            <option key={i}>{toTitleCase(item)}</option>
+                        ))}
+                    </select>
 
                     <label>Starts At</label>
                     <input
