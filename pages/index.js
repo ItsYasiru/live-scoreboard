@@ -23,11 +23,15 @@ function timestampToString(timestamp, format = "MMMM Do h:mm a") {
 function IndexPage(props) {
     const { match } = props;
 
-    const router = useRouter();
-    const refreshData = () => {
-        router.replace(router.asPath);
-    };
-    setTimeout(refreshData, 60 * 1000);
+    if (typeof window === "undefined") {
+        return;
+    } else {
+        const router = useRouter();
+        const refreshData = () => {
+            router.replace(router.asPath);
+        };
+        setTimeout(refreshData, 60 * 1000);
+    }
 
     if (match) {
         match.modeSettings = getModeSettings(match.gamemode);
