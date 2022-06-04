@@ -58,7 +58,7 @@ function CreatePanel() {
         "DHA - Dharmaraja College",
         "KNG - Kingswood College",
         "RAH - Rahula College",
-        "SAC - St. Anthony&apos;s College",
+        "SACK - St. Anthony&apos;s College",
         "SUM - Sumangala College",
         "SYL - St. Sylvester&apos;s College",
         "VID - Vidyartha College",

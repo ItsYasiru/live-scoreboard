@@ -7,6 +7,8 @@ import Timer from "../components/Timer";
 import CardHolder from "../components/index/CardHolder";
 import SchoolCard from "../components/index/SchoolCard";
 
+import PopUp from "../components/minor/PopUp";
+
 import { getModeSettings } from "../lib/gameModeHandler";
 
 import classes from "../styles/index.module.sass";
@@ -40,6 +42,11 @@ function IndexPage(props) {
             </Head>
 
             <main className={classes.main}>
+                <PopUp href='https://www.youtube.com/watch?v=-pAm6oWeISY'>
+                    <i className='fa-brands fa-youtube'></i>
+                    Trinity College Media Unit is now live on Youtube!
+                </PopUp>
+
                 {match ? (
                     <CardHolder
                         title={
