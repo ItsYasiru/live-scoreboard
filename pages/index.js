@@ -125,7 +125,7 @@ function IndexPage(props) {
                         height='23'
                     />
                     <Image
-                        src='/images/College-Logo.png'
+                        src='https://www.xpanse.live/_next/image?url=%2Fimages%2Fcollege-logo.png&w=96&q=75'
                         alt='College Logo'
                         width='72'
                         height='40'
